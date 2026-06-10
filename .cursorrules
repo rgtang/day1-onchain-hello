@@ -1,15 +1,37 @@
-# Hackcamp Day 1 - On-chain Hello World
+# Project Context
+项目名: day1-onchain-hello
+项目目标: 用 viem 查询以太坊主网钱包余额，作为 21 天实战营 Day 1 的基础项目。
+未来还会扩展到多链 / 多账户 / 美元估值 / TG Bot 推送（Week 2）。
 
-## 项目目标
-用 viem 查询以太坊主网钱包余额，验证 AI 工程化工作流。
+# Tech Stack（必须遵守）
+- 语言: TypeScript (strict mode)
+- 运行时: Node.js >= v20 LTS（推荐 v22 / v24）
+- 链上交互: viem 2.x（不要使用 ethers.js v5 或 v6）
+- HTTP: 用内置 fetch，不要装 axios / node-fetch
+- 测试: 暂时不写测试
 
-## 技术栈约束
-- Node.js >= v20 LTS
-- TypeScript (strict mode)
-- viem >= 2.x（不要用 ethers.js v5）
-- 用 fetch 不要装 axios
+# Directory Convention
+- src/ 放主代码
+- src/lib/ 放工具函数（rpc client、formatters 等）
+- src/scripts/ 放可独立执行的脚本
 
-## 风格约束
-- 命名清晰，不要用单字母变量
-- 错误处理：所有外部调用都要 try/catch 并打印有用日志
-- 输出友好，不要 console.log 一个原始 JSON
+# Style
+- 命名: 函数 camelCase、常量 SCREAMING_SNAKE_CASE
+- 不写注释来说明"做了什么"，只写注释解释"为什么这么做"
+- 所有外部 IO（RPC、API 调用）必须 try/catch，错误信息要可读
+- 控制台输出对人类友好，不要直接打印原始 JSON
+
+# Autonomy（决策授权）
+你可以自主做的事：
+- 安装 / 升级依赖
+- 重构内部函数
+- 添加错误处理 / 日志
+- 修改输出格式
+必须先问我的事：
+- 引入新的网络请求目标（新的第三方 API）
+- 任何涉及主网 / 真实资产的操作
+- 改变 package.json 的 scripts 命名
+
+# Output
+- 跑命令前先告诉我你要跑什么
+- 多文件改动时，最后给一段简短 changelog
