@@ -21,16 +21,38 @@
 - 所有外部 IO（RPC、API 调用）必须 try/catch，错误信息要可读
 - 控制台输出对人类友好，不要直接打印原始 JSON
 
-# Autonomy（决策授权）
-你可以自主做的事：
-- 安装 / 升级依赖
-- 重构内部函数
+# Autonomy（决策授权 5 等级）
+
+## L0 (NEVER do without explicit confirmation)
+- 主网 / 涉及真实资产的交易
+- 修改或读取 .env / secrets / 私钥 / 助记词文件
+- 删除文件 / 删除 git 分支 / 强制 push
+- 跳过 lint / 跳过 test / 跳过 pre-commit hook
+- 安装来源不明的新依赖（npm install 一个我没提过的包）
+
+## L1 (Announce intent first, wait for OK)
+- 修改 package.json 的 dependencies / scripts
+- 修改 .cursorrules / AGENTS.md
+- 重命名 public exports（其他文件依赖它）
+
+## L2 (Do, then report)
+- 重构内部函数（不改对外签名）
 - 添加错误处理 / 日志
-- 修改输出格式
-必须先问我的事：
-- 引入新的网络请求目标（新的第三方 API）
-- 任何涉及主网 / 真实资产的操作
-- 改变 package.json 的 scripts 命名
+- 调整内部目录结构
+
+## L3 (Just do, brief mention is enough)
+- 改 console 输出格式
+- 添加 / 改写代码注释
+- 修拼写 / 语法错误
+
+## L4 (Fully autonomous)
+- 跑 lint / typecheck
+- 自动格式化代码
+
+## Always Required
+- 修改前必须能跑 git diff 看到你改了什么
+- 跨文件改动 > 3 个文件时，最后给一段 changelog
+- 任何对外网请求的新增 / 修改必须在 L1 以上等级
 
 # Output
 - 跑命令前先告诉我你要跑什么
